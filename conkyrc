@@ -1,0 +1,152 @@
+#------------------------- Windows Settings
+# Create own window instead of using desktop (required in nautilus)
+own_window yes
+own_window_type normal
+own_window_transparent no
+own_window_hints undecorated,sticky,below,skip_taskbar,skip_pager
+own_window_colour black
+own_window_class Conky
+own_window_title Simple Default Conky
+own_window_argb_visual yes
+own_window_argb_value 0
+double_buffer yes
+
+#------------------------- Location
+alignment top_left
+minimum_size 710 768
+maximum_width 710
+gap_x 0
+gap_y 20
+
+#------------------------- FONT
+use_xft yes
+xftfont LiberationMono:bold:size=8
+xftalpha 0.8 	# Alpha of Xft font. Must be a value at or between 1 and 0 ###
+override_utf8_locale yes
+draw_shades yes
+default_shade_color black
+draw_outline no
+uppercase no
+
+#------------------------- Colors
+default_color DCDCDC
+color0 BB7744
+color1 DD9966
+color2 666666
+
+#------------------------- BORDERS
+draw_borders no
+draw_outline no
+stippled_borders 0
+border_inner_margin 0
+border_outer_margin 0
+border_width 0
+
+#------------------------- OTHER
+text_buffer_size 256
+use_spacer none
+background no
+use_spacer none
+update_interval 1
+default_bar_size 220 5
+
+#------------------------- LUA
+lua_load ~/.conky/lua/graphs.lua
+lua_draw_hook_pre main_graph
+
+TEXT
+#
+# time, date, weather
+#
+${GOTO 40}${voffset -40}${font Roboto:size=140:weight=Thin}${time %H}${font Roboto:size=90:weight=Thin}${voffset -48}${color0}${time %M}${color}
+${GOTO 60}${font Roboto:size=20:weight=Thin}${voffset -70}${time %A, %d %B}
+${GOTO 450}${font Roboto:size=16:weight=Thin}${voffset -200}${execi 600 bash ~/.conky/scripts/weather.sh info city} [${execi 600 bash ~/.conky/scripts/weather.sh info sun}]
+${GOTO 480}${voffset 0}${font Meteocons:size=50}${execi 600 ~/.conky/scripts/weather.sh 0 image}${font Roboto:size=60:weight=Thin}${voffset -20} ${execi 600 bash ~/.conky/scripts/weather.sh 0 temp}°
+${GOTO 420}${font Meteocons:size=30}${voffset -40}${execi 600 bash ~/.conky/scripts/weather.sh 1 image}${GOTO 540}${execi 600 bash ~/.conky/scripts/weather.sh 2 image}${GOTO 660}${execi 600 bash ~/.conky/scripts/weather.sh 3 image}
+${GOTO 420}${voffset -15}${font Roboto:size=14:weight=Thin}${color0}${execi 600 bash ~/.conky/scripts/weather.sh 1 high}°${color}/${execi 600 bash ~/.conky/scripts/weather.sh 1 low}°${GOTO 540}${color0}${execi 600 bash ~/.conky/scripts/weather.sh 2 high}°${color}/${execi 600 bash ~/.conky/scripts/weather.sh 2 low}°${GOTO 660}${color0}${execi 600 bash ~/.conky/scripts/weather.sh 3 high}°${color}/${execi 600 bash ~/.conky/scripts/weather.sh 3 low}°
+#
+# cpu, mem, fs
+#
+${font}${voffset 0}
+${GOTO 10}${font Roboto:size=12}- CPU ${fs_bar 1,174}${GOTO 250}- MEM ${fs_bar 1,174 /}${GOTO 490}- FILE SYSTEM ${fs_bar 1,120 /}${font}
+#
+
+#
+${GOTO 10}${font}CPU 1:${font LiberationMono:size=8}${GOTO 70}${cpu cpu1}%${GOTO 110}@${GOTO 170}${freq_g (1)} GHz\
+${GOTO 250}${font}MEM${font LiberationMono:size=8}${GOTO 340}: ${memperc}% | ${mem}\
+${GOTO 490}${font}${color}/${font LiberationMono:size=8}${GOTO 580}[${fs_type /}]${alignr}${fs_used_perc /}%
+#
+${GOTO 10}${font}CPU 2:${font LiberationMono:size=8}${GOTO 70}${cpu cpu2}%${GOTO 110}@${GOTO 170}${freq_g (2)} GHz\
+${GOTO 250}${font}Buff/Cached${font LiberationMono:size=8}${GOTO 340}: ${buffers}/${cached}\
+${GOTO 490}${color}${fs_bar 5,220 /}
+#
+
+#
+${GOTO 490}${font}${color}/home${font LiberationMono:size=8}${GOTO 580}[${fs_type /home}]${alignr}${fs_used_perc /home}%
+${GOTO 490}${color}${fs_bar 5,220 /home}
+#
+
+#
+${GOTO 10}${font LiberationMono:size=8}${color0}${top name 1}${GOTO 120}${top pid 1}${GOTO 180}${top cpu 1}%\
+${GOTO 250}${font LiberationMono:size=8}${color0}${top_mem name 1}${GOTO 360}${top_mem pid 1}${GOTO 420}${top_mem mem_res 1}\
+${GOTO 490}${font}${color}/var${font LiberationMono:size=8}${GOTO 580}[${fs_type /var}]${alignr}${fs_used_perc /var}%
+#
+${GOTO 10}${font LiberationMono:size=8}${color1}${top name 2}${GOTO 120}${top pid 2}${GOTO 180}${top cpu 2}%\
+${GOTO 250}${font LiberationMono:size=8}${color1}${top_mem name 2}${GOTO 360}${top_mem pid 2}${GOTO 420}${top_mem mem_res 2}\
+${GOTO 490}${color}${fs_bar 5,220 /var}
+#
+${GOTO 10}${font LiberationMono:size=8}${color1}${top name 3}${GOTO 120}${top pid 3}${GOTO 180}${top cpu 3}%\
+${GOTO 250}${font LiberationMono:size=8}${color1}${top_mem name 3}${GOTO 360}${top_mem pid 3}${GOTO 420}${top_mem mem_res 3}
+#
+${GOTO 10}${font LiberationMono:size=8}${color2}${top name 4}${GOTO 120}${top pid 4}${GOTO 180}${top cpu 4}%\
+${GOTO 250}${font LiberationMono:size=8}${color2}${top_mem name 4}${GOTO 360}${top_mem pid 4}${GOTO 420}${top_mem mem_res 4}\
+${GOTO 490}${font}${color}/storage${font LiberationMono:size=8}${GOTO 580}[${fs_type /mnt/storage}]${alignr}${fs_used_perc /mnt/storage}%
+#
+${GOTO 10}${font LiberationMono:size=8}${color2}${top name 5}${GOTO 120}${top pid 5}${GOTO 180}${top cpu 5}%\
+${GOTO 250}${font LiberationMono:size=8}${color2}${top_mem name 5}${GOTO 360}${top_mem pid 5}${GOTO 420}${top_mem mem_res 5}\
+${GOTO 490}${color}${fs_bar 5,220 /boot}
+#
+# net, system, rpi
+#
+${voffset 30}
+${GOTO 10}${font Roboto:size=12}- NET ${fs_bar 1,174}${GOTO 250}- SYSTEM ${fs_bar 1,144 /}${GOTO 490}- RASPBERRY PI ${fs_bar 1,100 /}${font}
+#
+
+#
+${GOTO 10}${font}Public IP${font LiberationMono:size=8}${GOTO 110}: ${color0}${if_up wlo1}${execi 600 cat ~/.conky/cache/ip}${else}N/A${endif}${color}\
+${GOTO 250}${font}Computer${GOTO 340}${font LiberationMono:size=8}: ${nodename}\
+${GOTO 490}${font}${color}/${font LiberationMono:size=8}${GOTO 540}${alignr}${execi 600 bash ~/.conky/scripts/rpi_df.sh root perc}%
+#
+${GOTO 10}${font}Local IP${font LiberationMono:size=8}${GOTO 110}: ${if_up wlo1}${addr wlo1}${else}N/A${endif}${color}\
+${GOTO 250}${font}Kernel${GOTO 340}${font LiberationMono:size=8}: ${kernel}\
+${GOTO 490}${execibar 600 bash ~/.conky/scripts/rpi_df.sh root perc}
+#
+${GOTO 10}${font}Wifi Signal${font LiberationMono:size=8}${GOTO 110}: ${if_up wlo1}${wireless_link_qual_perc wlo1}%${else}N/A${endif}\
+${GOTO 250}${font}Architecture${GOTO 340}${font LiberationMono:size=8}: ${machine}
+#
+${GOTO 10}${font}ESSID${font LiberationMono:size=8}${GOTO 110}: ${if_up wlo1}${wireless_essid wlo1}${else}N/A${endif}\
+${GOTO 250}${font}Uptime${GOTO 340}${font LiberationMono:size=8}: ${uptime}\
+${GOTO 490}${font}${color}/torrent${font LiberationMono:size=8}${GOTO 540}${alignr}${execi 600 bash ~/.conky/scripts/rpi_df.sh torrent perc}%
+#
+${GOTO 10}${font}Connections${font LiberationMono:size=8}${GOTO 110}: ${tcp_portmon 1 65535 count}\
+${GOTO 490}${execibar 600 bash ~/.conky/scripts/rpi_df.sh torrent perc}
+#
+${GOTO 250}${font}Processes${GOTO 340}${font LiberationMono:size=8}: ${processes} (${color0}${running_processes}${color} running)
+#
+${GOTO 250}${font}GPU${GOTO 340}${font LiberationMono:size=8}: intel\
+${GOTO 490}${font}${color}/backup${font LiberationMono:size=8}${GOTO 540}${alignr}${execi 600 bash ~/.conky/scripts/rpi_df.sh backup perc}%
+#
+${GOTO 490}${execibar 600 bash ~/.conky/scripts/rpi_df.sh backup perc}
+#
+
+#
+
+#
+${GOTO 20}${font LiberationMono:size=8}  Up: ${if_up wlo1}${upspeed wlo1}${GOTO 110}| ${totalup wlo1}${else}N/A${endif}
+${GOTO 20}${font LiberationMono:size=8}Down: ${if_up wlo1}${downspeed wlo1}${GOTO 110}| ${totaldown wlo1}${else}N/A${endif}
+#
+# cache values
+#
+${texeci 3600 ruby ~/.conky/scripts/cache-ip.rb}
+${texeci 3600 bash ~/.conky/scripts/cache-rpi_df.sh}
+${texeci 3600 ruby ~/.conky/scripts/cache-weather.rb}
