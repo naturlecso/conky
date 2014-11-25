@@ -62,12 +62,21 @@ ${GOTO 40}${voffset -40}${font Roboto:size=140:weight=Thin}${time %H}${font Robo
 ${GOTO 60}${font Roboto:size=20:weight=Thin}${voffset -70}${time %A, %d %B}
 ${GOTO 450}${font Roboto:size=16:weight=Thin}${voffset -200}${execi 600 bash ~/.conky/scripts/weather.sh info city} [${execi 600 bash ~/.conky/scripts/weather.sh info sun}]
 ${GOTO 480}${voffset 0}${font Meteocons:size=50}${execi 600 ~/.conky/scripts/weather.sh 0 image}${font Roboto:size=60:weight=Thin}${voffset -20} ${execi 600 bash ~/.conky/scripts/weather.sh 0 temp}°
-${GOTO 420}${font Meteocons:size=30}${voffset -40}${execi 600 bash ~/.conky/scripts/weather.sh 1 image}${GOTO 540}${execi 600 bash ~/.conky/scripts/weather.sh 2 image}${GOTO 660}${execi 600 bash ~/.conky/scripts/weather.sh 3 image}
-${GOTO 420}${voffset -15}${font Roboto:size=14:weight=Thin}${color0}${execi 600 bash ~/.conky/scripts/weather.sh 1 high}°${color}/${execi 600 bash ~/.conky/scripts/weather.sh 1 low}°${GOTO 540}${color0}${execi 600 bash ~/.conky/scripts/weather.sh 2 high}°${color}/${execi 600 bash ~/.conky/scripts/weather.sh 2 low}°${GOTO 660}${color0}${execi 600 bash ~/.conky/scripts/weather.sh 3 high}°${color}/${execi 600 bash ~/.conky/scripts/weather.sh 3 low}°
+#${GOTO 420}${font Meteocons:size=30}${voffset -40}${execi 600 bash ~/.conky/scripts/weather.sh 1 image}${GOTO 540}${execi 600 bash ~/.conky/scripts/weather.sh 2 image}${GOTO 660}${execi 600 bash ~/.conky/scripts/weather.sh 3 image}
+#${GOTO 420}${voffset -15}${font Roboto:size=14:weight=Thin}${color0}${execi 600 bash ~/.conky/scripts/weather.sh 1 high}°${color}/${execi 600 bash ~/.conky/scripts/weather.sh 1 low}°${GOTO 540}${color0}${execi 600 bash ~/.conky/scripts/weather.sh 2 high}°${color}/${execi 600 bash ~/.conky/scripts/weather.sh 2 low}°${GOTO 660}${color0}${execi 600 bash ~/.conky/scripts/weather.sh 3 high}°${color}/${execi 600 bash ~/.conky/scripts/weather.sh 3 low}°
+#
+# events
+#
+${GOTO 420}${voffset -70}${font Roboto:size=12}- EVENTS ${fs_bar 1,220}
+${GOTO 420}${font}date${GOTO 520}event0
+${GOTO 420}${font}date${GOTO 520}event1
+${GOTO 420}${font}date${GOTO 520}event2
+${GOTO 420}${font}date${GOTO 520}event3
+${GOTO 420}${font}date${GOTO 520}event4
 #
 # cpu, mem, fs
 #
-${font}${voffset 0}
+${font}${voffset 10}
 ${GOTO 10}${font Roboto:size=12}- CPU ${fs_bar 1,174}${GOTO 250}- MEM ${fs_bar 1,174 /}${GOTO 490}- FILE SYSTEM ${fs_bar 1,120 /}${font}
 #
 
@@ -104,7 +113,7 @@ ${GOTO 490}${font}${color}/storage${font LiberationMono:size=8}${GOTO 580}[${fs_
 #
 ${GOTO 10}${font LiberationMono:size=8}${color2}${top name 5}${GOTO 120}${top pid 5}${GOTO 180}${top cpu 5}%\
 ${GOTO 250}${font LiberationMono:size=8}${color2}${top_mem name 5}${GOTO 360}${top_mem pid 5}${GOTO 420}${top_mem mem_res 5}\
-${GOTO 490}${color}${fs_bar 5,220 /boot}
+${GOTO 490}${color}${fs_bar 5,220 /mnt/storage}
 #
 # net, system, rpi
 #
