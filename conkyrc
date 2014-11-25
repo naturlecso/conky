@@ -76,7 +76,7 @@ ${GOTO 420}${font}date${GOTO 520}event4
 #
 # cpu, mem, fs
 #
-${font}${voffset 10}
+${font}${voffset 30}
 ${GOTO 10}${font Roboto:size=12}- CPU ${fs_bar 1,174}${GOTO 250}- MEM ${fs_bar 1,174 /}${GOTO 490}- FILE SYSTEM ${fs_bar 1,120 /}${font}
 #
 
