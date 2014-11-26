@@ -13,7 +13,7 @@ File.open("#{Dir.home}/.conky/cache/calendar", 'w+') do |file|
     date = item.summary.content[/\d{4}.\d{2}.\d{2}./]
     # get event title and limit its length
     title = item.title.content
-    title = title[0..28].gsub(/.{3}$/, '...') unless title.length <= 28
+    title = title[0..26].gsub(/.{3}$/, '...') unless title.length <= 26
 
     file.puts "#{date} - #{title}"
   end
