@@ -7,15 +7,15 @@ if [ $# -lt 2 ]; then
   exit 0
 fi
 
-cache_file=~/.conky/cache/weather
+CACHE_FILE=~/.conky/cache/weather
 
-if [ ! -f "$cache_file" ]; then
+if [ ! -f $CACHE_FILE ]; then
   echo "N/A"
   exit 0
 fi
 
 filter(){
-  echo $(cat $cache_file | grep $1 | awk "{ print \$$2 }")
+  echo $(cat $CACHE_FILE | grep $1 | awk "{ print \$$2 }")
 }
 
 to_sun() {

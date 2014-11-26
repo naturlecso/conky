@@ -9,7 +9,7 @@ if [ "$#" -lt 1 ]; then
   exit 0
 fi
 
-if [ ! -f "$CACHE_FILE" ]; then
+if [ ! -f $CACHE_FILE ]; then
   echo "N/A"
   exit 0
 fi

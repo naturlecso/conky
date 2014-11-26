@@ -7,12 +7,19 @@ if [ "$#" -lt 2 ]; then
   exit 0
 fi
 
+CACHE_FILE=~/.conky/cache/rpi_df
+
+if [ ! -f $CACHE_FILE ]; then
+  echo "N/A"
+  exit 0
+fi
+
 parse_df() {
   # function variables
   local to_grep=$1
   local to_awk=$2
 
-  echo $(cat ~/.conky/cache/rpi_df | grep $to_grep | awk "{ print \$$to_awk }")
+  echo $(cat $CACHE_FILE | grep $to_grep | awk "{ print \$$to_awk }")
 }
 
 case $2 in
