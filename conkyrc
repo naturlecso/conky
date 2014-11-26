@@ -68,11 +68,11 @@ ${GOTO 480}${voffset 0}${font Meteocons:size=50}${execi 600 ~/.conky/scripts/wea
 # events
 #
 ${GOTO 420}${voffset -70}${font Roboto:size=12}- EVENTS ${fs_bar 1,220}
-${GOTO 420}${font}date${GOTO 520}event0
-${GOTO 420}${font}date${GOTO 520}event1
-${GOTO 420}${font}date${GOTO 520}event2
-${GOTO 420}${font}date${GOTO 520}event3
-${GOTO 420}${font}date${GOTO 520}event4
+${GOTO 420}${font}${execi 600 bash ~/.conky/scripts/calendar.sh 1}
+${GOTO 420}${font}${execi 600 bash ~/.conky/scripts/calendar.sh 2}
+${GOTO 420}${font}${execi 600 bash ~/.conky/scripts/calendar.sh 3}
+${GOTO 420}${font}${execi 600 bash ~/.conky/scripts/calendar.sh 4}
+${GOTO 420}${font}${execi 600 bash ~/.conky/scripts/calendar.sh 5}
 #
 # cpu, mem, fs
 #
@@ -159,3 +159,4 @@ ${GOTO 20}${font LiberationMono:size=8}Down: ${if_up wlo1}${downspeed wlo1}${GOT
 ${texeci 3600 ruby ~/.conky/scripts/cache-ip.rb}
 ${texeci 3600 bash ~/.conky/scripts/cache-rpi_df.sh}
 ${texeci 3600 ruby ~/.conky/scripts/cache-weather.rb}
+${texeci 3600 ruby ~/.conky/scripts/cache-caledar.rb}
